@@ -13,16 +13,15 @@ module.exports = class Email {
     this.to = user.email;
     this.link = url;
     this.user = user;
-    this.from = 'Bavith Vemana <vemanabavith111@gmail.com>';
+    this.from = 'Bavith Vemana <bavithprojects@gmail.com>';
   }
   newTransporter() {
     //create and return transporter
     const transporter = nodemailer.createTransport({
-      host: 'sandbox.smtp.mailtrap.io',
-      port: 2525,
+      service: 'gmail',
       auth: {
-        user: 'e0661fac5d7d84',
-        pass: 'fe0ef30e847775',
+        user: 'bavithprojects@gmail.com',
+        pass: 'nvpa oppj ohyd spwh',
       },
     });
     return transporter;

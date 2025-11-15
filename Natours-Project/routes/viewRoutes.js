@@ -4,7 +4,6 @@ const viewController = require('../controllers/viewController');
 const authController = require('../controllers/authController');
 const bookingController = require('../controllers/bookingController');
 // const
-
 viewRouter.get('/resetPassword/:resetToken', viewController.resetPasswordPage);
 viewRouter.get('/login', viewController.getLoginForm);
 viewRouter.get('/login/forgetPassword', viewController.getForgetPasswordPage);
