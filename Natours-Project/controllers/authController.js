@@ -190,12 +190,14 @@ exports.forgotPassword = async (req, res, next) => {
     }
     const Url = `${req.protocol}://${req.get('host')}`;
     const sendMail = new Email(user, Url);
+    console.log('Working till here');
     await sendMail.sendPasswordResetMail();
     res.status(200).json({
       status: 'success',
       message: 'Token Sent to email',
     });
   } catch (err) {
+    console.log('Error caught');
     next(new AppError(err.message, 500));
   }
 };
@@ -282,4 +284,3 @@ exports.updatePassword = async (req, res, next) => {
     next(new AppError(err.message, 500));
   }
 };
-
