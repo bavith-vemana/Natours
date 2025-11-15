@@ -7,6 +7,7 @@ const bookingController = require('../controllers/bookingController');
 viewRouter.get('/resetPassword/:resetToken', viewController.resetPasswordPage);
 viewRouter.get('/login', viewController.getLoginForm);
 viewRouter.get('/login/forgetPassword', viewController.getForgetPasswordPage);
+viewRouter.get('/signup', viewController.getSignupForm);
 
 viewRouter.get(
   '/account',

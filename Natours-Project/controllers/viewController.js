@@ -63,6 +63,17 @@ exports.getLoginForm = async (req, res, next) => {
   }
 };
 
+exports.getSignupForm = async (req, res, next) => {
+  try {
+    res.status(200).render('signup', {
+      title: 'Signup Page',
+    });
+  } catch (err) {
+    res.status(200).render('error');
+    // next(err);
+  }
+};
+
 exports.getAccountPage = async (req, res, next) => {
   try {
     res
