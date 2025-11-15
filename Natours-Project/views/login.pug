@@ -14,7 +14,7 @@ block header
   script(src='/js/login.js')
   
 block content
-  main.main
+  main.main(style='position: relative;')
     .login-form
       h2.heading-secondary.ma-bt-lg Log into your account
       form.form
@@ -30,4 +30,9 @@ block content
         .form__group.text-center
           p.form__text Don't have an account?
           a.btn.btn--green.btn--bold(href='/signup', style='font-weight: 600;') Sign Up
+          
+    .credentials(style='position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.7); color: #fff; padding: 10px; border-radius: 5px; font-size: 14px;')
+      p Credentials:
+      p Mail ID: vemanabavith111@gmail.com
+      p Password: password123
 
