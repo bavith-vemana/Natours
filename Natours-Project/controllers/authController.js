@@ -198,6 +198,10 @@ exports.forgotPassword = async (req, res, next) => {
     });
   } catch (err) {
     console.log('Error caught');
+    res.status(200).json({
+      status: 'fail',
+      message: err.message,
+    });
     next(new AppError(err.message, 500));
   }
 };
