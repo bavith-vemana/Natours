@@ -203,6 +203,7 @@ exports.forgotPassword = async (req, res, next) => {
     //   status: 'fail',
     //   message: err.message,
     // });
+    console.log(err);
     next(new AppError(err.message, 500));
   }
 };
