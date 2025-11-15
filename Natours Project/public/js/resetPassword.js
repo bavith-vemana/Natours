@@ -5,7 +5,7 @@ const changePassword = async (password) => {
     };
     const responce = await axios({
       method: 'PATCH',
-      url: `${window.location.protocol}//${window.location.host}/api/v1/users/resetpassword/${resetToken}`,
+      url: `/api/v1/users/resetpassword/${resetToken}`,
       data: data,
     });
     alert('updated Sucessfully');

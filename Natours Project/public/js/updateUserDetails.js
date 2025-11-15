@@ -1,25 +1,29 @@
 const updateUserDetails = async (name, email, selectedPhoto) => {
   try {
     const form = new FormData();
-    form.append('updatedEmail', email);
-    form.append('updatedName', name);
+    if (name) {
+      form.append('updatedName', name);
+    }
+
+    if (email) {
+      form.append('updatedEmail', email);
+    }
+
     if (selectedPhoto) {
       form.append('updatedPhoto', selectedPhoto);
     }
 
     const apiOptions = {
       method: 'PATCH',
-      url: `${window.location.protocol}//${window.location.host}/api/v1/users/updateMe`,
+      url: `/api/v1/users/updateMe`,
       data: form,
-      Headers: {
-        'Content-Type': 'multipart/form-data',
-      },
     };
+    // FormData with axios automatically sets correct Content-Type header with boundary
     const response = await axios(apiOptions);
     alert('Updated Successfully');
   } catch (err) {
     console.log('not submitted');
-    console.log(err.data);
+    console.log(err);
   }
 };
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,11 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Capture selected file
-  photoInput.addEventListener('change', () => {
-    if (photoInput.files.length > 0) {
-      selectedPhoto = photoInput.files[0];
-    }
-  });
+  if (photoInput) {
+    photoInput.addEventListener('change', () => {
+      if (photoInput.files.length > 0) {
+        selectedPhoto = photoInput.files[0];
+      }
+    });
+  }
 
   // Handle form submit
   saveSettings.addEventListener('submit', (e) => {

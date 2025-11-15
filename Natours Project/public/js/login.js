@@ -1,10 +1,9 @@
 const login = async (email, password) => {
   try {
-
     data = { email, password };
     const responce = await axios({
       method: 'POST',
-      url: `${window.location.protocol}//${window.location.host}/api/v1/users/login`,
+      url: `/api/v1/users/login`,
       data: data,
     });
 
@@ -12,7 +11,6 @@ const login = async (email, password) => {
     setTimeout(() => {
       window.location.href = '/';
     }, 100);
-
   } catch (err) {
     if (err.response) {
       alert(err.response.data.message);
@@ -35,6 +33,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     login(email, password);
-
   });
 });

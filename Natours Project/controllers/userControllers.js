@@ -59,7 +59,7 @@ exports.updateMe = async (req, res, next) => {
     if (updatedName) {
       user.name = updatedName;
     }
-    if (req.file.filename) {
+    if (req.file && req.file.filename) {
       user.photo = req.file.filename;
     }
     const updatedDetails = await user.save();

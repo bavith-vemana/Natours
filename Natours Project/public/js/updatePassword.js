@@ -2,7 +2,7 @@ const updatePassword = async (oldPassword, newPassword) => {
   try {
     const apiOptions = {
       method: 'PATCH',
-      url: `${window.location.protocol}//${window.location.host}/api/v1/users/updatepassword`,
+      url: `/api/v1/users/updatepassword`,
       data: {
         oldPassword: oldPassword,
         newPassword: newPassword,
@@ -11,17 +11,6 @@ const updatePassword = async (oldPassword, newPassword) => {
     const responce = await axios(apiOptions);
     alert('updated Sucessfully');
 
-    // await axios({
-    //   method: 'GET',
-    //   url: 'http://localhost:5600/api/v1/users/logout',
-    // });
-    // setTimeout(() => {
-    //   window.location.href = '/login';
-    // }, 500);
-    // await logout();
-    // setTimeout(() => {
-    //   window.location.href = '/login';
-    // }, 1000);
   } catch (err) {
     alert('not updated');
     console.log(err.data);

@@ -14,7 +14,7 @@ const logout = async () => {
   try {
     const responce = await axios({
       method: 'GET',
-      url: `${window.location.protocol}//${window.location.host}/api/v1/users/logout`,
+      url: `/api/v1/users/logout`,
     });
     alert('Logged Out');
   } catch (err) {

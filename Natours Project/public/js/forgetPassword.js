@@ -5,7 +5,7 @@ const sendMail = async (email) => {
     };
     const responce = await axios({
       method: 'POST',
-      url: `${window.location.protocol}//${window.location.host}/api/v1/users/forgetpassword`,
+      url: `/api/v1/users/forgetpassword`,
       data: data,
     });
     alert('please check Your Inbox');

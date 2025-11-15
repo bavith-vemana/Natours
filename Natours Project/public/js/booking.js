@@ -23,7 +23,7 @@ const cancelTour = async (tourId) => {
   try {
     const apiOptions = {
       method: 'DELETE',
-      url: `${window.location.protocol}//${window.location.host}/api/v1/bookings/deleteBooking/${tourId}`,
+      url: `/api/v1/bookings/deleteBooking/${tourId}`,
     };
     const responce = await axios(apiOptions);
     window.location.reload();
@@ -40,7 +40,7 @@ const bookTour = async (tourId) => {
   //1) get the session from API
   const apiOptions = {
     method: 'GET',
-    url: `${window.location.protocol}//${window.location.host}/api/v1/bookings/checkout-session/${tourId}`,
+    url: `/api/v1/bookings/checkout-session/${tourId}`,
   };
   const session = await axios(apiOptions);
   //2) create checkout form + charge credit card
