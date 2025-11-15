@@ -4,6 +4,7 @@ const errorController = require('./controllers/errorController');
 const fs = require('fs');
 const app = express();
 const path = require('path');
+const compression = require('compression');
 
 const morgan = require('morgan');
 const { execPath } = require('process');
@@ -19,6 +20,8 @@ const cookieParser = require('cookie-parser');
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
+
+app.use(compression());
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
