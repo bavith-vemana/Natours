@@ -9,10 +9,8 @@ const sendMail = async (email) => {
       data: data,
     });
     alert('please check Your Inbox');
-    console.log(responce.data);
   } catch (err) {
     alert(err.response.data.message + ' Please check Email Id');
-    console.log(err.response.data.message);
   }
 };
 
@@ -22,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePasswordForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value;
-      console.log(email);
       sendMail(email);
     });
   } catch (err) {

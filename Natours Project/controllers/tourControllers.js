@@ -8,10 +8,6 @@ const sharp = require('sharp');
 
 // const tours = JSON.parse(fs.readFileSync(`./dev-data/data/tours-simple.json`));
 
-const checkID = (req, res, next, val) => {
-  console.log('check ID param Middle Ware');
-  next();
-};
 
 const getAllTours = async (req, res, next) => {
   try {
@@ -80,16 +76,13 @@ const resizeTourPics = async (req, res, next) => {
 const updateTour = async (req, res, next) => {
   try {
     const photosData = req.files;
-    // console.log(req.files);
     let images = [];
     photosData.forEach((element) => {
       images.push(element.filename);
     });
-    // console.log(images);
     const id = req.params.id;
     req.body.images = images;
     const data = req.body;
-    // console.log('data : ', data);
     const options = { new: true, runValidators: true };
     const updatedDoc = await handlerFactory.findByIdAndUpdate(
       tourModel,
@@ -283,39 +276,3 @@ module.exports = {
   updateTourPics,
   resizeTourPics,
 };
-
-// const checkBody = (req, res, next) => {
-//   const { name, price } = req.body;
-//   if (name === undefined || price === undefined) {
-//     res.status(400).json({
-//       status: 'Failed',
-//       message: 'Bad request',
-//     });
-//     return;
-//   } else {
-//     next();
-//   }
-// };
-
-// const createTour = async (req, res) => {
-//   try {
-//     const savedData = await tourModel.create(req.body);
-//     res.status(200).json({ status: 'Sucess', data: savedData });
-//   } catch (err) {
-//     res.status(400).json({ status: 'failed', message: err });
-//   }
-// };
-
-// const updateTour = async (req, res) => {
-
-//   try {
-//     const updatedData = await tourModel.findByIdAndUpdate(
-//       req.params.id,
-//       req.body,
-//       { new: true, runValidators: true },
-//     );
-//     res.status(200).json({ status: 'Sucess', newData: updatedData });
-//   } catch (err) {
-//     res.status(400).json({ status: 'failed', message: err });
-//   }
-// };

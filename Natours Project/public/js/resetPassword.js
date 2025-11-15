@@ -9,7 +9,7 @@ const changePassword = async (password) => {
       data: data,
     });
     alert('updated Sucessfully');
-    console.log(responce.data);
+
     setTimeout(() => {
       window.location.href = '/login';
     }, 500);
@@ -23,10 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const updatePasswordForm = document.querySelector('.form');
   updatePasswordForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log('reset token:', resetToken);
+
     const newPassword = document.getElementById('newPassword').value;
     const confirmPassword = document.getElementById('confirmPass').value;
-    console.log(newPassword, confirmPassword);
     if (newPassword !== confirmPassword) {
       alert('password not matching');
     }

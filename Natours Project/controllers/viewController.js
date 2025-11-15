@@ -59,8 +59,6 @@ exports.getLoginForm = async (req, res, next) => {
     });
   } catch (err) {
     res.status(200).render('error');
-    console.log('Error');
-    console.log(err);
     // next(err);
   }
 };

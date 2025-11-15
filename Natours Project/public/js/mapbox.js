@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('lodded mapbox');
   const options = {
     scrollWheelZoom: true, // zoom with mouse wheel
     doubleClickZoom: true, // zoom on double click

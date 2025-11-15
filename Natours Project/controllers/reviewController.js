@@ -48,7 +48,7 @@ exports.getAllReviews = async (req, res, next) => {
     if (reviews.length == 0) {
       return next(new AppError('No reviews found', 500));
     }
-    console.log(reviews);
+
     res.status(200).json({
       status: 'Success',
       Reviews: reviews,
@@ -69,11 +69,9 @@ exports.createReviews = async (req, res, next) => {
     if (!req.body.tour) {
       req.body.tour = req.params.tourId;
     }
-    console.log(req.body);
     const { user, tour } = req.body;
     const filter = { user, tour };
     const isExist = await handlerFactory.getDocs(Review, filter);
-    console.log('Review: ', isExist);
     if (isExist != 0) {
       return next(new AppError('Your Review already exists', 400));
     }

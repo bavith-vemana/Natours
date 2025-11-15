@@ -10,7 +10,7 @@ const updatePassword = async (oldPassword, newPassword) => {
     };
     const responce = await axios(apiOptions);
     alert('updated Sucessfully');
-    console.log(responce.data);
+
     // await axios({
     //   method: 'GET',
     //   url: 'http://localhost:5600/api/v1/users/logout',
@@ -31,14 +31,10 @@ const updatePassword = async (oldPassword, newPassword) => {
 document.addEventListener('DOMContentLoaded', () => {
   const updatePasswordForm = document.querySelector('.form-user-settings');
   updatePasswordForm.addEventListener('submit', (e) => {
-    console.log('in');
     e.preventDefault();
     const currentPassword = document.getElementById('password-current').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('password-confirm').value;
-    console.log(currentPassword);
-    console.log(password);
-    console.log(confirmPassword);
     if (password !== confirmPassword) {
       alert('password is not matching');
     }

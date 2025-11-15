@@ -99,15 +99,7 @@ exports.isLoggedIn = async (req, res, next) => {
       res.locals.user = undefined;
       return next();
     }
-
-    // 4) Check if password changed after token issued
-    // if (user.changedPasswordAfter(decoded.iat)) {
-    //   console.log('user.changedPasswordAfter(decoded.iat)');
-    //   res.locals.user = undefined;
-    //   return next();
-    // }
-
-    // 5) Attach user to locals to access every where
+    // 4) Attach user to locals to access every where
     res.locals.user = user;
     next();
   } catch (err) {
@@ -180,7 +172,6 @@ exports.accessTo = (roles) => {
     if (roles.includes(req.userDetails.role)) {
       return next();
     }
-    console.log(roles);
     return next(new AppError(req.userDetails.role, 403));
   };
 };
@@ -254,7 +245,6 @@ exports.updatePassword = async (req, res, next) => {
   //check if old password matches then update
   //send new JWT Token
   try {
-    console.log('in Update');
     //check user enters old password
     if (!req.body.oldPassword) {
       next(new AppError('Please enter Old password', 400));
@@ -293,36 +283,3 @@ exports.updatePassword = async (req, res, next) => {
   }
 };
 
-// exports.isLoggedIn = async (req, res, next) => {
-//   //1) check if there is token
-//   let token;
-//   if (req.cookies.jwt) {
-//     token = req.cookies.jwt;
-//   } else {
-//     return next();
-//   }
-//   //2) verify Token
-//   const decoded = jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-//     if (err) {
-//       return next();
-//     }
-//     return decoded;
-//   });
-
-//   if (!decoded) {
-//     return next();
-//   }
-
-//   const userDetails = await User.findById(decoded.id).select('+active');
-//   if (!userDetails) {
-//     return next();
-//   }
-
-//   //password changed after token issued
-
-//   if (!userDetails.changedPasswordAfter(decoded.iat)) {
-//     return next();
-//   }
-//   res.locals.user = userDetails;
-//   next();
-// };

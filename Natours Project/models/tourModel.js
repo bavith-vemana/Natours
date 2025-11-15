@@ -130,19 +130,7 @@ tourSchema.pre(/^find/, function (next) {
   next();
 });
 
-// document middle-ware
-// Pre-save hook
-tourSchema.pre('save', function (next) {
-  console.log(`About to save tour: ${this.name}`);
-  next();
-});
 
-// Post-save hook
-tourSchema.post('save', function (doc, next) {
-  console.log(`Tour saved: ${this.name}`);
-  console.log(`Tour saved: ${doc.name}`);
-  next();
-});
 
 //model
 const tourModel = mongoose.model('tours', tourSchema);

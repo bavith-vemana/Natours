@@ -6,11 +6,7 @@ const updateUserDetails = async (name, email, selectedPhoto) => {
     if (selectedPhoto) {
       form.append('updatedPhoto', selectedPhoto);
     }
-    // data = {
-    //   updatedEmail: email,
-    //   updatedName: name,
-    //   updatedPhoto: selectedPhoto,
-    // };
+
     const apiOptions = {
       method: 'PATCH',
       url: `${window.location.protocol}//${window.location.host}/api/v1/users/updateMe`,
@@ -21,7 +17,6 @@ const updateUserDetails = async (name, email, selectedPhoto) => {
     };
     const response = await axios(apiOptions);
     alert('Updated Successfully');
-    console.log(response.data);
   } catch (err) {
     console.log('not submitted');
     console.log(err.data);
@@ -43,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
   photoInput.addEventListener('change', () => {
     if (photoInput.files.length > 0) {
       selectedPhoto = photoInput.files[0];
-      console.log('Selected file:', selectedPhoto.name);
     }
   });
 
@@ -52,8 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-
-    // console.log('good till here');
 
     updateUserDetails(name, email, selectedPhoto);
   });

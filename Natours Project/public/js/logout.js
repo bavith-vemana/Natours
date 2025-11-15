@@ -17,7 +17,6 @@ const logout = async () => {
       url: `${window.location.protocol}//${window.location.host}/api/v1/users/logout`,
     });
     alert('Logged Out');
-    console.log('Logout successful: ', response.data);
   } catch (err) {
     if (err.response) {
       alert(err.response.data.message);

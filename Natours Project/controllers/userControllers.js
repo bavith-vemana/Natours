@@ -5,22 +5,7 @@ const multer = require('multer');
 const eslintConfigPrettier = require('eslint-config-prettier');
 const sharp = require('sharp');
 exports.uploadPhoto = () => {
-  //noramal storage
-
-  // const storage = multer.diskStorage({
-  //   destination: (req, file, callback) => {
-  //     callback(null, 'public/img/users');
-  //   },
-  //   filename: (req, file, callback) => {
-  //     const ext = file.mimetype.split('/')[1];
-  //     const fileName =
-  //       'user' + '-' + req.userDetails._id + '-' + Date.now() + '.' + ext;
-  //     //console.log(file);
-  //     callback(null, fileName);
-  //   },
-  // });
-
-  //buffer
+  //buffer storage to process image with sharp
   const storage = multer.memoryStorage();
 
   const filter = (req, file, callback) => {
@@ -63,7 +48,6 @@ exports.resizeUserPhoto = async (req, res, next) => {
 
 exports.updateMe = async (req, res, next) => {
   try {
-    // console.log(req.file);
     if (!req.body) {
       next(new AppError('please provide data to update', 400));
     }

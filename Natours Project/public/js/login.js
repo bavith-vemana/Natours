@@ -1,6 +1,6 @@
 const login = async (email, password) => {
   try {
-    // console.log(email, password);
+
     data = { email, password };
     const responce = await axios({
       method: 'POST',
@@ -13,7 +13,6 @@ const login = async (email, password) => {
       window.location.href = '/';
     }, 100);
 
-    console.log('Login successful: ', response.data);
   } catch (err) {
     if (err.response) {
       alert(err.response.data.message);
@@ -28,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.querySelector('.form');
 
   if (!loginForm) {
-    console.error('Login form not found!');
     return;
   }
 
@@ -37,6 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     login(email, password);
-    // console.log(email, password);
+
   });
 });
