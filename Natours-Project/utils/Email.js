@@ -61,18 +61,19 @@ module.exports = class Email {
     //Link to post new password
     const resetURL = `${this.link}/resetPassword/${resetToken}`;
 
-    //Converting Pug to HTML
-    const tempHtml = pug.renderFile(
-      `${__dirname}/../views/email/passwordResetMail.pug`,
-      {
-        firstName: this.firstName,
-        url: resetURL,
-      },
-    );
-    //Injecting CSS
-    const cssPath = `${__dirname}/../views/email/email.css`;
-    const css = fs.readFileSync(cssPath, 'utf-8');
-    const html = juice.inlineContent(tempHtml, css);
+    // //Converting Pug to HTML
+    // const tempHtml = pug.renderFile(
+    //   `${__dirname}/../views/email/passwordResetMail.pug`,
+    //   {
+    //     firstName: this.firstName,
+    //     url: resetURL,
+    //   },
+    // );
+    // //Injecting CSS
+    // const cssPath = `${__dirname}/../views/email/email.css`;
+    // const css = fs.readFileSync(cssPath, 'utf-8');
+    // const html = juice.inlineContent(tempHtml, css);
+    const html = `<p>Reset your password by clicking <a href="${resetURL}">here</a>.</p>`;
 
     // Expired time
     const URLExpiredTime = new Date(

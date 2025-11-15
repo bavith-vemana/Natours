@@ -192,16 +192,17 @@ exports.forgotPassword = async (req, res, next) => {
     const sendMail = new Email(user, Url);
     console.log('Working till here');
     await sendMail.sendPasswordResetMail();
+    console.log('mail sent');
     res.status(200).json({
       status: 'success',
       message: 'Token Sent to email',
     });
   } catch (err) {
     console.log('Error caught');
-    res.status(200).json({
-      status: 'fail',
-      message: err.message,
-    });
+    // res.status(200).json({
+    //   status: 'fail',
+    //   message: err.message,
+    // });
     next(new AppError(err.message, 500));
   }
 };
