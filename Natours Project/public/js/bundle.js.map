@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "sources": [
+    "index.js"
+  ],
+  "names": [
+    "console",
+    "log",
+    "script",
+    "src"
+  ],
+  "mappings": "AAAAA,OAAO,CAACC,GAAG,CAAC,mBAAmB,CAAC;AAChCC,MAAM,CAAEC,GAAG,GAAG,sDAAuD,CAAC;AACtED,MAAM,CAAEC,GAAG,GAAG,eAAgB,CAAC;AAC/BD,MAAM,CAAEC,GAAG,GAAG,cAAe,CAAC;AAC9BD,MAAM,CAAEC,GAAG,GAAG,2CAA4C,CAAC;AAC3DD,MAAM,CAAEC,GAAG,GAAG,eAAgB,CAAC",
+  "file": "bundle.js",
+  "sourceRoot": "",
+  "sourcesContent": [
+    "console.log('hello form parcel');\nscript((src = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'));\nscript((src = '/js/logout.js'));\nscript((src = '/js/login.js'));\nscript((src = 'https://unpkg.com/leaflet/dist/leaflet.js'));\nscript((src = '/js/mapbox.js'));\n"
+  ]
+}

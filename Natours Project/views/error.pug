@@ -1,0 +1,12 @@
+extends base
+block append head
+  link(rel='stylesheet', href='/css/style.css')
+  title Error
+block content
+  main.error-page
+    .error
+      .error__title
+        h2.heading-secondary.heading-secondary--error Uh oh! Something went wrong!
+        h2.error__emoji 😢 🤯
+      .error__msg Page not found or an unexpected error occurred.
+      a.error__btn(href='/') Go Home
