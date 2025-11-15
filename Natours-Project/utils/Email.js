@@ -18,10 +18,12 @@ module.exports = class Email {
   newTransporter() {
     //create and return transporter
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'smtp-relay.brevo.com',
+      port: 587,
+      secure: false,
       auth: {
-        user: 'bavithprojects@gmail.com',
-        pass: 'nvpa oppj ohyd spwh',
+        user: '9bb0b7001@smtp-brevo.com',
+        pass: 'vdMsGOB64XQkI30U',
       },
     });
     return transporter;
@@ -61,19 +63,19 @@ module.exports = class Email {
     //Link to post new password
     const resetURL = `${this.link}/resetPassword/${resetToken}`;
 
-    // //Converting Pug to HTML
-    // const tempHtml = pug.renderFile(
-    //   `${__dirname}/../views/email/passwordResetMail.pug`,
-    //   {
-    //     firstName: this.firstName,
-    //     url: resetURL,
-    //   },
-    // );
-    // //Injecting CSS
-    // const cssPath = `${__dirname}/../views/email/email.css`;
-    // const css = fs.readFileSync(cssPath, 'utf-8');
-    // const html = juice.inlineContent(tempHtml, css);
-    const html = `<p>Reset your password by clicking <a href="${resetURL}">here</a>.</p>`;
+    //Converting Pug to HTML
+    const tempHtml = pug.renderFile(
+      `${__dirname}/../views/email/passwordResetMail.pug`,
+      {
+        firstName: this.firstName,
+        url: resetURL,
+      },
+    );
+    //Injecting CSS
+    const cssPath = `${__dirname}/../views/email/email.css`;
+    const css = fs.readFileSync(cssPath, 'utf-8');
+    const html = juice.inlineContent(tempHtml, css);
+    //const html = `<p>Reset your password by clicking <a href="${resetURL}">here</a>.</p>`;
 
     // Expired time
     const URLExpiredTime = new Date(
