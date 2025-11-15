@@ -7,7 +7,9 @@ const multer = require('multer');
 const sharp = require('sharp');
 
 // const tours = JSON.parse(fs.readFileSync(`./dev-data/data/tours-simple.json`));
-
+const checkID = (req, res, next, val) => {
+  next();
+};
 
 const getAllTours = async (req, res, next) => {
   try {
