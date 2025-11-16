@@ -18,6 +18,8 @@ viewRouter.use(authController.isLoggedIn);
 
 viewRouter.get('/myTours', authController.protect, viewController.getMyTours);
 
+viewRouter.get('/myReviews', viewController.getMyReviews);
+
 viewRouter.get(
   '/',
   bookingController.createBookings,

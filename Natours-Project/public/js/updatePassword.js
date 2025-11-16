@@ -10,7 +10,6 @@ const updatePassword = async (oldPassword, newPassword) => {
     };
     const responce = await axios(apiOptions);
     alert('updated Sucessfully');
-
   } catch (err) {
     alert('not updated');
     console.log(err.data);

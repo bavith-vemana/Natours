@@ -17,6 +17,25 @@ exports.getMyTours = async (req, res, next) => {
   }
 };
 
+exports.getMyReviews = async (req, res, next) => {
+  try {
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const response = await axios.get(`${baseUrl}/api/v1/reviews/my-reviews`, {
+      headers: {
+        Cookie: req.headers.cookie, // ⬅️ forward JWT cookie
+      },
+    });
+    const Reviews = response.data.Reviews;
+    res.status(200).render('reviews', {
+      title: 'My Reviews',
+      Reviews,
+    });
+  } catch (err) {
+    console.log('Error : ', err.response);
+    res.status(200).render('error');
+  }
+};
+
 exports.getOverview = async (req, res) => {
   // get data
   const response = await axios.get(`${process.env.BASE_URL}/api/v1/tours`);

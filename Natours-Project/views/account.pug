@@ -15,7 +15,7 @@ block content
                 ul.side-nav
                     +liItem('#','Settings','settings',true)
                     +liItem('/myTours','My bookings','briefcase',false)
-                    +liItem('#','My reviews','star',false)
+                    +liItem('/myReviews','My reviews','star',false)
                     +liItem('#','Billing','credit-card',false)
                 .admin-nav
                 if user.role == 'admin'

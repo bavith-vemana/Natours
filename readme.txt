@@ -7,6 +7,7 @@ stack used :
   templete : pug
   payment : stripe
   mails : node mailer
+  data base : mongo db
 
 Card details(Testing) :
   card number : 4242 4242 4242 4242
