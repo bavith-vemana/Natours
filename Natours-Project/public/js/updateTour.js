@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
   const tourForm = document.getElementById('editTourForm');
   const numDaysInput = document.getElementById('numDays');
   const generateBtn = document.getElementById('generateDays');
