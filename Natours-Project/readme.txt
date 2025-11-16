@@ -1,6 +1,7 @@
 Login credentials
 Mail Id : vemanabavith111@gmail.com
 password : password123
+role : admin
 
 stack used :
   deploment : render.com

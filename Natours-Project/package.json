@@ -38,7 +38,8 @@
     "sharp": "^0.34.4",
     "stripe": "^19.3.1",
     "validator": "^13.15.15",
-    "compression": "^1.8.1"
+    "compression": "^1.8.1",
+    "resend": "^6.4.2"
   },
   "devDependencies": {
     "multer": "^2.0.2",
