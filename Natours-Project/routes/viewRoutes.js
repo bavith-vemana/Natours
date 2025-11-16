@@ -18,7 +18,17 @@ viewRouter.use(authController.isLoggedIn);
 
 viewRouter.get('/myTours', authController.protect, viewController.getMyTours);
 
-viewRouter.get('/myReviews', viewController.getMyReviews);
+viewRouter.get(
+  '/myReviews',
+  authController.protect,
+  viewController.getMyReviews,
+);
+
+viewRouter.get(
+  '/create-review',
+  authController.protect,
+  viewController.getCreateReview,
+);
 
 viewRouter.get(
   '/',

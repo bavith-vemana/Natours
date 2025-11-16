@@ -84,7 +84,14 @@ block content
 
     section.section-reviews
       .reviews
-        each reviewData in tourData.Reviews
+        //-Add Review Card
+        .reviews__card.reviews__card--add
+            if user
+              a.reviews__add-text(href=`/create-review?tourId=${tourData._id}`) Add Your Review
+            else 
+              a.reviews__add-text(href='/login') Login to add a review
+        //- Existing Review Cards
+        each reviewData in tourData.Reviews.slice().reverse()
           .reviews__card
             .reviews__avatar
               img.reviews__avatar-img(src=`/img/users/${reviewData.user.photo}`, alt=`${reviewData.user.name}`)
@@ -92,9 +99,10 @@ block content
             p.reviews__text #{reviewData.review}
             br
             .reviews_rating
-               - for (let i = 0; i < reviewData.rating; i++)
-                  svg.reviews__star.reviews__star--active
-                    use(xlink:href='/img/icons.svg#icon-star')
+              - for (let i = 0; i < reviewData.rating; i++)
+                svg.reviews__star.reviews__star--active
+                  use(xlink:href='/img/icons.svg#icon-star')
+
 
     section.section-cta
       .cta

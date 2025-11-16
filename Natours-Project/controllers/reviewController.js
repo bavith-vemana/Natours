@@ -7,21 +7,9 @@ exports.getUserReviews = async (req, res, next) => {
     const userId = String(req.userDetails._id);
     const reviews = await Review.find({ user: userId }).populate({
       path: 'tour',
-      select: 'name imageCover -_id',
+      select: 'name imageCover',
       options: { autopopulate: false },
     });
-    //   .lean();
-    // const reviews = await Review.find({ user: userId })
-    //   .setOptions({ _recursed: true, autopopulate: false }) // ⛔ disable autopopulate
-    //   .populate({
-    //     path: 'tour',
-    //     select: 'name imageCover -_id',
-    //     options: { autopopulate: false }, // ⛔ forces no guides populate
-    //     populate: [], // ⛔ stops nested populates
-    //   })
-    //   .lean({ virtuals: false }); // ⛔ remove virtual fields like id, durationWeeks
-
-    //   .select('-tour.guides -tour.durationWeeks -tour.id');
     if (reviews.length == 0) {
       return next(new AppError('No reviews found for this user', 500));
     }

@@ -26,12 +26,25 @@ exports.getMyReviews = async (req, res, next) => {
       },
     });
     const Reviews = response.data.Reviews;
-    res.status(200).render('reviews', {
+    res.status(200).render('myReviews', {
       title: 'My Reviews',
       Reviews,
     });
   } catch (err) {
-    console.log('Error : ', err.response);
+    // // console.log('Error : ', err.response);
+    res.status(200).render('error');
+  }
+};
+
+exports.getCreateReview = async (req, res, next) => {
+  try {
+    const tourId = req.query.tourId;
+    res.status(200).render('createReview', {
+      title: 'Create Review',
+      tourId,
+    });
+  } catch (err) {
+    // // console.log('Error : ', err.response);
     res.status(200).render('error');
   }
 };
@@ -66,6 +79,7 @@ exports.getTour = async (req, res, next) => {
       tourData,
     });
   } catch (err) {
+    // // // console.log('Error : ', err.response);
     res.status(200).render('error');
     // next(new AppError(err.message, 400));
   }
@@ -77,6 +91,7 @@ exports.getLoginForm = async (req, res, next) => {
       title: 'Login Page',
     });
   } catch (err) {
+    // // console.log('Error : ', err.response);
     res.status(200).render('error');
     // next(err);
   }
@@ -88,8 +103,8 @@ exports.getSignupForm = async (req, res, next) => {
       title: 'Signup Page',
     });
   } catch (err) {
+    // // console.log('Error : ', err.response);
     res.status(200).render('error');
-    // next(err);
   }
 };
 
@@ -98,7 +113,10 @@ exports.getAccountPage = async (req, res, next) => {
     res
       .status(200)
       .render('account', ((title = 'Your Account'), (user = req.userDetails)));
-  } catch (err) {}
+  } catch (err) {
+    // // console.log('Error : ', err.response);
+    res.status(200).render('error');
+  }
 };
 
 exports.resetPasswordPage = async (req, res, next) => {
@@ -107,7 +125,8 @@ exports.resetPasswordPage = async (req, res, next) => {
       title: 'Reset Password',
       token: req.params.resetToken,
     });
-  } catch (error) {
+  } catch (err) {
+    // // console.log('Error : ', err.response);
     res.status(200).render('error');
   }
 };
@@ -117,7 +136,8 @@ exports.getForgetPasswordPage = async (req, res, next) => {
     res.status(200).render('forgetPasswordPage', {
       title: 'Forget Password',
     });
-  } catch (error) {
+  } catch (err) {
+    // // console.log('Error : ', err.response);
     res.status(200).render('error');
   }
 };
