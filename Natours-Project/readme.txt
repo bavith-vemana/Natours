@@ -2,7 +2,7 @@ Natours Project - README
 
 Demo Login Credentials:
 ----------------------
-Email: demo-admin@example.com
+Email: vemanabavith111@gmail.com
 Password: password123
 Role: admin
 
