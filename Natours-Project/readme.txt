@@ -1,23 +1,54 @@
-Login credentials
-Mail Id : vemanabavith111@gmail.com
-password : password123
-role : admin
+Natours Project - README
 
-stack used :
-  deploment : render.com
-  templete : pug
-  payment : stripe
-  mails : node mailer
-  data base : mongo db
-  map : leaflet
+Demo Login Credentials:
+----------------------
+Email: demo-admin@example.com
+Password: password123
+Role: admin
 
-Card details(Testing) :
-  card number : 4242 4242 4242 4242
-  expire date : any future date
-  CVC : any 3 digit number
+Tech Stack:
+-----------
+Frontend:
+- Pug (Templating engine)
+- Leaflet.js (Map integration)
 
-data Bases:
-   Tours
-   Reviews
-   bookings
-   user
+Backend:
+- Node.js with Express.js
+- Authentication using JSON Web Tokens (JWT)
+
+Database:
+- MongoDB
+  Collections: Tours, Users, Bookings, Reviews
+
+Payments:
+- Stripe (Test payments)
+
+Emails:
+- NodeMailer (Password reset and notifications)
+
+Deployment:
+- Render.com
+
+Stripe Test Card:
+-----------------
+Card Number: 4242 4242 4242 4242
+Expiry Date: Any future date (MM/YY)
+CVC: Any 3-digit number
+
+Features:
+---------
+User:
+- Signup & Login
+- Forgot Password via Email
+- Book Tours & Cancel Bookings
+- Add & Delete Reviews
+
+Admin:
+- Create, Edit, Delete Tours
+- Manage Bookings
+- Manage Users
+- Access Admin Dashboard
+
+Notes:
+------
+- This project uses JWT for authentication, stored and managed via cookies.
