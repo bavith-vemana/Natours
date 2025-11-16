@@ -3,6 +3,62 @@ const axios = require('axios');
 const AppError = require('../utils/appError');
 const bookingModel = require('../models/bookingModel');
 
+exports.getManageTours = async (req, res, next) => {
+  try {
+    const response = await axios.get(`${process.env.BASE_URL}/api/v1/tours`);
+    const tours = response.data.data;
+    // build templete
+    // render the templete using data
+    res.status(200).render('manageTours', {
+      title: 'Manage Tours',
+      tours,
+    });
+  } catch (err) {
+    res.status(200).render('error');
+  }
+};
+
+exports.getUpdateTour = async (req, res, next) => {
+  try {
+    const response = await axios.get(
+      `${process.env.BASE_URL}/api/v1/tours/${req.params.tourId}`,
+    );
+    const tourData = response.data.data;
+
+    if (!tourData || tourData.length == 0) {
+      res.status(200).render('error');
+      // next(new AppError('Tour Not Found', 404));
+    }
+    res.status(200).render('updateTour', {
+      title: 'Update Tour',
+      tourData,
+    });
+  } catch (err) {
+    res.status(200).render('error');
+  }
+};
+exports.getTour = async (req, res, next) => {
+  try {
+    const response = await axios.get(
+      `${process.env.BASE_URL}/api/v1/tours/${req.params.tourId}`,
+    );
+    const tourData = response.data.data;
+
+    if (!tourData || tourData.length == 0) {
+      res.status(200).render('error');
+      // next(new AppError('Tour Not Found', 404));
+    }
+    res.status(200).render('tour', {
+      title: tourData.name + ' tour',
+      tourData,
+    });
+  } catch (err) {
+    // // // console.log('Error : ', err.response);
+    res.status(200).render('error');
+    // next(new AppError(err.message, 400));
+  }
+};
+
 exports.getMyTours = async (req, res, next) => {
   try {
     const bookings = await bookingModel.find({ user: req.userDetails._id });
@@ -61,28 +117,6 @@ exports.getOverview = async (req, res) => {
     title: 'All tours',
     tours,
   });
-};
-
-exports.getTour = async (req, res, next) => {
-  try {
-    const response = await axios.get(
-      `${process.env.BASE_URL}/api/v1/tours/${req.params.tourId}`,
-    );
-    const tourData = response.data.data;
-
-    if (!tourData || tourData.length == 0) {
-      res.status(200).render('error');
-      // next(new AppError('Tour Not Found', 404));
-    }
-    res.status(200).render('tour', {
-      title: tourData.name + ' tour',
-      tourData,
-    });
-  } catch (err) {
-    // // // console.log('Error : ', err.response);
-    res.status(200).render('error');
-    // next(new AppError(err.message, 400));
-  }
 };
 
 exports.getLoginForm = async (req, res, next) => {

@@ -32,9 +32,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  // console.log(req.cookies);
-
-  // console.log('middle ware-1');
   next();
 });
 const options = {

@@ -1,0 +1,94 @@
+extends base
+
+//- Header scripts
+block append scripts
+  script.
+    const locationsData = !{JSON.stringify(tourData.locations)}
+
+//- Head content
+block append head
+  link(rel='stylesheet', href='https://unpkg.com/leaflet/dist/leaflet.css')
+  script(src='https://unpkg.com/leaflet/dist/leaflet.js')
+  script(src='/js/mapbox.js')
+  script(src='https://js.stripe.com/v3/')
+  script(type='module' src='/js/updateTour.js')
+
+//- Main content
+block content
+  main.main
+    //- Header Section (optional, non-editable tour info)
+    //- section.section-header
+    //-   .header__hero
+    //-     .header__hero-overlay &nbsp;
+    //-     img.header__hero-img(src=`/img/tours/${tourData.imageCover}`, alt=`Tour ${tourData.name}`)
+    //-   .heading-box
+    //-     h1.heading-primary
+    //-       span Editing: #{tourData.name}
+
+    //- Edit Tour Form
+    section.section-edit-tour
+      h2.heading-secondary.ma-bt-lg Edit Tour Details
+
+      form#editTourForm(data-tour-id=tourData._id)
+        //- Tour Name
+        .form__group
+          label.form__label(for='name') Tour Name
+          input#name.form__input(type='text', name='name', required, value=tourData.name)
+
+        //- Duration
+        .form__group
+          label.form__label(for='duration') Duration (days)
+          input#duration.form__input(type='number', name='duration', required, min='1', value=tourData.duration)
+
+        //- Difficulty
+        .form__group
+          label.form__label(for='difficulty') Difficulty
+          select#difficulty.form__input(name='difficulty', required)
+            option(value='easy', selected=tourData.difficulty==='easy') Easy
+            option(value='medium', selected=tourData.difficulty==='medium') Medium
+            option(value='difficult', selected=tourData.difficulty==='difficult') Difficult
+
+        //- Max Group Size
+        .form__group
+          label.form__label(for='maxGroupSize') Max Participants
+          input#maxGroupSize.form__input(type='number', name='maxGroupSize', required, min='1', value=tourData.maxGroupSize)
+
+        //- Locations  
+        .form__group
+          label.form__label Number of Days
+          input#numDays.form__input(type='number', min='1', placeholder='Enter number of days')
+          button#generateDays.btn.btn--green(type='button', style='margin-left: 10px') Enter Iternary Details
+
+        // Container where daily inputs will be appended
+        #dailyDetailsContainer
+
+
+        //- Start Location
+        //- .form__group
+        //-   label.form__label(for='startLocation') Start Location
+        //-   input#startLocation.form__input(type='text', name='startLocation', required, value=tourData.startLocation.description)
+
+        //- //- Start Dates (comma separated)
+        //- .form__group
+        //-   label.form__label(for='startDates') Start Dates (YYYY-MM-DD, comma separated)
+        //-   input#startDates.form__input(type='text', name='startDates', required, value=tourData.startDates.map(date => date.slice(0,10)).join(','))
+
+        //- Description
+        .form__group
+          label.form__label(for='description') Description
+          textarea#description.form__input(name='description', required rows='6') #{tourData.description}
+
+        //- Cover Image Upload
+        //- .form__group
+        //-   label.form__label(for='imageCover') Cover Image
+        //-   input#imageCover.form__input(type='file', name='imageCover', accept='image/*')
+
+        //- //- Additional Images Upload
+        //- .form__group
+        //-   label.form__label(for='images') Additional Images (multiple)
+        //-   input#images.form__input(type='file', name='images', multiple, accept='image/*')
+
+        //- Submit Button
+        .form__group.text-center
+          button.btn.btn--green(type='submit') Update Tour
+

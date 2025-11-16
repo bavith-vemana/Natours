@@ -42,4 +42,18 @@ viewRouter.get(
   viewController.getTour,
 );
 
+viewRouter.get(
+  '/manage-tours',
+  authController.protect,
+  authController.accessTo(['admin']),
+  viewController.getManageTours,
+);
+
+viewRouter.get(
+  '/update-tour/:tourId',
+  authController.protect,
+  authController.accessTo(['admin']),
+  viewController.getUpdateTour,
+);
+
 module.exports = { viewRouter };

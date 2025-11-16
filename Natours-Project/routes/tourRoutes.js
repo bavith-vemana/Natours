@@ -33,7 +33,6 @@ tourRouter
   );
 
 tourRouter.use((req, res, next) => {
-  console.log('middle ware-2');
   next();
 });
 

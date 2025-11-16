@@ -75,24 +75,79 @@ const resizeTourPics = async (req, res, next) => {
   }
 };
 
+// const updateTour = async (req, res, next) => {
+//   try {
+//     const photosData = req.files;
+//     let images = [];
+//     photosData.forEach((element) => {
+//       images.push(element.filename);
+//     });
+//     const id = req.params.id;
+//     req.body.images = images;
+//     const data = req.body;
+//     const options = { new: true, runValidators: true };
+//     const updatedDoc = await handlerFactory.findByIdAndUpdate(
+//       tourModel,
+//       id,
+//       data,
+//       options,
+//     );
+//     res.status(200).json({ status: 'Sucess', data: updatedDoc });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
 const updateTour = async (req, res, next) => {
   try {
-    const photosData = req.files;
-    let images = [];
-    photosData.forEach((element) => {
-      images.push(element.filename);
-    });
-    const id = req.params.id;
-    req.body.images = images;
-    const data = req.body;
+    const tourId = req.params.id;
+
+    // 1️⃣ Handle uploaded images
+    if (req.files && req.files.length > 0) {
+      const images = req.files.map((file) => file.filename);
+      req.body.images = images;
+    }
+
+    // 2️⃣ Parse startLocation and locations if they come as JSON strings
+    if (req.body.startLocation) {
+      try {
+        req.body.startLocation = JSON.parse(req.body.startLocation);
+      } catch (err) {
+        return res
+          .status(400)
+          .json({ status: 'error', message: 'Invalid startLocation format' });
+      }
+    }
+
+    if (req.body.locations) {
+      try {
+        req.body.locations = JSON.parse(req.body.locations);
+      } catch (err) {
+        return res
+          .status(400)
+          .json({ status: 'error', message: 'Invalid locations format' });
+      }
+    }
+
+    // 3️⃣ Update the tour document
     const options = { new: true, runValidators: true };
     const updatedDoc = await handlerFactory.findByIdAndUpdate(
       tourModel,
-      id,
-      data,
+      tourId,
+      req.body,
       options,
     );
-    res.status(200).json({ status: 'Sucess', data: updatedDoc });
+
+    if (!updatedDoc) {
+      return res
+        .status(404)
+        .json({ status: 'error', message: 'Tour not found' });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      data: updatedDoc,
+    });
   } catch (err) {
     next(err);
   }
